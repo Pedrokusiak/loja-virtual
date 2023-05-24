@@ -26,8 +26,8 @@ public class PessoaService {
 
     public Pessoa inserir(Pessoa objeto) {
         objeto.setDataCriacao(new Date());
-        Pessoa estadoNovo = pessoaRepository.saveAndFlush(objeto);
-        return estadoNovo;
+        Pessoa objetoNovo = pessoaRepository.saveAndFlush(objeto);
+        return objetoNovo;
     }
 
     public Pessoa alterar(Pessoa objeto) {

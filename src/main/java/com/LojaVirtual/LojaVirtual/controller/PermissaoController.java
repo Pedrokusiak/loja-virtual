@@ -3,6 +3,7 @@ package com.LojaVirtual.LojaVirtual.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,47 +17,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.LojaVirtual.LojaVirtual.entity.Pessoa;
-import com.LojaVirtual.LojaVirtual.service.PessoaService;
-
-import jakarta.websocket.server.PathParam;
+import com.LojaVirtual.LojaVirtual.entity.Permissao;
+import com.LojaVirtual.LojaVirtual.repository.PermissaoRepository;
+import com.LojaVirtual.LojaVirtual.service.PermissaoService;
 
 @RestController
-@RequestMapping("/api/pessoa")
+@RequestMapping("/api/permissao")
 @CrossOrigin
-public class PessoaController {
+public class PermissaoController {
 
     @Autowired
-    private PessoaService pessoaService;
-
+    private PermissaoService permissaoService;
     @GetMapping("/")
-    public List<Pessoa> buscarTodos() {
-        return pessoaService.buscarTodos();
+    public List<Permissao> buscarTodos(){
+        return permissaoService.buscarTodos();
     }
-
     @PostMapping("/")
-    public Pessoa inserir(@RequestBody Pessoa objeto) {
-        return pessoaService.inserir(objeto);
+    public Permissao inserir(@RequestBody Permissao objeto){
+        return permissaoService.inserir(objeto);
     }
-
     @PutMapping("/")
-    public Pessoa alterar(@RequestBody Pessoa objeto) {
-        return pessoaService.alterar(objeto);
+    public Permissao alterar(@RequestBody Permissao objeto){
+        return permissaoService.alterar(objeto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirPessoa(@PathVariable Long id) {
+    public ResponseEntity<Object> excluirPermissao(@PathVariable Long id) {
         try {
-            pessoaService.excluir(id);
-            return ResponseEntity.ok("Pessoa excluído com sucesso");
+            permissaoService.excluir(id);
+            return ResponseEntity.ok("Permissao excluído com sucesso");
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pessoa> buscarPorId(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(pessoaService.buscarPorId(id));
+    public ResponseEntity<Permissao> buscarPorId(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(permissaoService.buscarPorId(id));
     }
 
 }
+
