@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LojaVirtual.LojaVirtual.entity.Permissao;
-import com.LojaVirtual.LojaVirtual.entity.Pessoa;
 import com.LojaVirtual.LojaVirtual.repository.PermissaoRepository;
-import com.LojaVirtual.LojaVirtual.repository.PessoaRepository;
 
 @Service
 public class PermissaoService {
