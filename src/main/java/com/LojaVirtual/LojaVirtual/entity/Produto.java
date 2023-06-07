@@ -11,7 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 
@@ -23,10 +25,17 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotNull(message = "A descrição curta não pode ser nulo")
+    @NotBlank(message = "A descrição curta não pode ser vazia")
     private String descricaoCurta;
+
+    @NotNull(message = "A descrição detalhada não pode ser nulo")
+    @NotBlank(message = "A descrição detalhada não pode ser vazia")
     private String descricaoDetalhada;
+
+    @Positive(message = "O valor de custe deve ser um valor positivo")
     private Double valorCusto;
+    @Positive(message = "O valor de venda dever ser um valor positivo")
     private Double valorVenda;
 
 
