@@ -20,7 +20,7 @@ import com.LojaVirtual.LojaVirtual.entity.Cidade;
 
 import com.LojaVirtual.LojaVirtual.service.CidadeService;
 
-
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -37,7 +37,7 @@ public class CidadeController {
     }
 
     @PostMapping("/")
-    public Cidade inserir(@RequestBody Cidade cidade) {
+    public Cidade inserir(@Valid@RequestBody Cidade cidade) {
         return cidadeService.inserir(cidade);
     }
 

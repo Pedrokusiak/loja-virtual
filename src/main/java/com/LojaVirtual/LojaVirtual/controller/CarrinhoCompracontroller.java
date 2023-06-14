@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LojaVirtual.LojaVirtual.entity.CarrinhoCompra;
 import com.LojaVirtual.LojaVirtual.service.CarrinhoCompraService;
 
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -35,7 +36,7 @@ public class CarrinhoCompraController {
     }
 
     @PostMapping("/")
-    public CarrinhoCompra inserir(@RequestBody CarrinhoCompra objeto) {
+    public CarrinhoCompra inserir(@Valid@RequestBody CarrinhoCompra objeto) {
         return carrinhoCompraService.inserir(objeto);
     }
 

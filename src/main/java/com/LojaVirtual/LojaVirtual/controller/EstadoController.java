@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LojaVirtual.LojaVirtual.entity.Estado;
 import com.LojaVirtual.LojaVirtual.service.EstadoService;
 
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -37,7 +38,7 @@ public class EstadoController {
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado estado) {
+    public Estado inserir(@Valid@RequestBody Estado estado) {
         return estadoService.inserir(estado);
     }
 

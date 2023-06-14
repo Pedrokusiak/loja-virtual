@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LojaVirtual.LojaVirtual.entity.Marca;
 import com.LojaVirtual.LojaVirtual.service.MarcaService;
 
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -35,7 +36,7 @@ public class MarcaController {
     }
 
     @PostMapping("/")
-    public Marca inserir(@RequestBody Marca objeto) {
+    public Marca inserir(@Valid@RequestBody Marca objeto) {
         return marcaService.inserir(objeto);
     }
 

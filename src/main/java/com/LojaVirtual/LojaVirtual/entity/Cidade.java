@@ -23,12 +23,14 @@ public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "O nome não pode ser nulo")
-    @NotBlank(message = "O nome não pode ser vazio")
+    
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
+    
     @ManyToOne
     @JoinColumn(name="idEstado")
     private Estado estado;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     @Temporal(TemporalType.TIMESTAMP)

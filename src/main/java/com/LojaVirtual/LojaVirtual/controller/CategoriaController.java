@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LojaVirtual.LojaVirtual.entity.Categoria;
 import com.LojaVirtual.LojaVirtual.service.CategoriaService;
 
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -35,7 +36,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/")
-    public Categoria inserir(@RequestBody Categoria objeto) {
+    public Categoria inserir(@Valid@RequestBody Categoria objeto) {
         return categoriaService.inserir(objeto);
     }
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LojaVirtual.LojaVirtual.entity.Pessoa;
 import com.LojaVirtual.LojaVirtual.service.PessoaService;
 
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -35,7 +36,7 @@ public class PessoaController {
     }
 
     @PostMapping("/")
-    public Pessoa inserir(@RequestBody Pessoa objeto) {
+    public Pessoa inserir(@Valid@RequestBody Pessoa objeto) {
         return pessoaService.inserir(objeto);
     }
 
