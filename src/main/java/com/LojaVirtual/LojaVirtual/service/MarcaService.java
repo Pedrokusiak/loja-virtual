@@ -1,10 +1,11 @@
 package com.LojaVirtual.LojaVirtual.service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.LojaVirtual.LojaVirtual.entity.Marca;
@@ -18,8 +19,8 @@ public class MarcaService {
     @Autowired
     private MarcaRepository marcaRepository;
 
-    public List<Marca> buscarTodos() {
-        return marcaRepository.findAll();
+    public Page<Marca> buscarTodos(Pageable pageable) {
+        return marcaRepository.findAll(pageable);
     }
 
     public Marca buscarPorId(Long id) {
@@ -43,4 +44,6 @@ public class MarcaService {
         marcaRepository.delete(marca);
 
     }
+
+    
 }

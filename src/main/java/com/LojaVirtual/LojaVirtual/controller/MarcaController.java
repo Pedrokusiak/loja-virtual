@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,17 +32,17 @@ public class MarcaController {
     @Autowired
     private MarcaService marcaService;
 
-    @GetMapping("/")
-    public List<Marca> buscarTodos() {
-        return marcaService.buscarTodos();
+    @GetMapping
+    public Page<Marca> buscarTodos(Pageable pageable) {
+        return marcaService.buscarTodos(pageable);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public Marca inserir(@Valid@RequestBody Marca objeto) {
         return marcaService.inserir(objeto);
     }
 
-    @PutMapping("/")
+    @PutMapping
     public Marca alterar(@RequestBody Marca objeto) {
         return marcaService.alterar(objeto);
     }

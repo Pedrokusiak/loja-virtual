@@ -33,8 +33,8 @@ public class PermissaoPessoa {
     @JoinColumn(name="idPermissao")
     private Permissao permissao;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataCriacao;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataAtualizacao;
+    // @Temporal(TemporalType.TIMESTAMP)
+    // private Date dataCriacao;
+    // @Temporal(TemporalType.TIMESTAMP)
+    // private Date dataAtualizacao;
 }

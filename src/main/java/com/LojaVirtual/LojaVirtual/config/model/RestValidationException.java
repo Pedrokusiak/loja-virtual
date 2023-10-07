@@ -1,4 +1,5 @@
-package com.LojaVirtual.LojaVirtual.config;
+package com.LojaVirtual.LojaVirtual.config.model;
+
 
 import java.util.List;
 import java.util.stream.Collectors;

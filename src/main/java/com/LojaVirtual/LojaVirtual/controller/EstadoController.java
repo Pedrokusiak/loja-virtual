@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,24 +27,23 @@ import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api/estado")
+@RequestMapping("/estado")
 @CrossOrigin
 public class EstadoController {
 
     @Autowired
     private EstadoService estadoService;
 
-    @GetMapping("/")
-    public List<Estado> buscarTodos() {
-        return estadoService.buscarTodos();
+    @GetMapping
+    public Page<Estado> listarTodos(Pageable pageable) {
+        return estadoService.listarTodos(pageable);
     }
-
-    @PostMapping("/")
+    @PostMapping
     public Estado inserir(@Valid@RequestBody Estado estado) {
         return estadoService.inserir(estado);
     }
 
-    @PutMapping("/")
+    @PutMapping
     public Estado alterar(@RequestBody Estado estado) {
         return estadoService.alterar(estado);
     }
@@ -57,9 +58,9 @@ public class EstadoController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Estado> buscarPorId(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(estadoService.buscarPorId(id));
-    }
+    // @GetMapping("/{id}")
+    // public ResponseEntity<Estado> buscarPorId(@PathVariable("id") Long id) {
+    //     return ResponseEntity.ok(estadoService.buscarPorId(id));
+    // }
 
 }

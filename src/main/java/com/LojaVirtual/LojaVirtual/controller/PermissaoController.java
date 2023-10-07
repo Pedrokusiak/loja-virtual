@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 
 import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,21 +26,22 @@ import com.LojaVirtual.LojaVirtual.service.PermissaoService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/permissao")
+@RequestMapping("/permissao")
 @CrossOrigin
 public class PermissaoController {
 
     @Autowired
     private PermissaoService permissaoService;
-    @GetMapping("/")
-    public List<Permissao> buscarTodos(){
-        return permissaoService.buscarTodos();
+
+    @GetMapping
+    public Page<Permissao> buscarTodos(Pageable pageable){
+        return permissaoService.buscarTodos(pageable);
     }
-    @PostMapping("/")
+    @PostMapping
     public Permissao inserir(@Valid@RequestBody Permissao objeto){
         return permissaoService.inserir(objeto);
     }
-    @PutMapping("/")
+    @PutMapping
     public Permissao alterar(@RequestBody Permissao objeto){
         return permissaoService.alterar(objeto);
     }

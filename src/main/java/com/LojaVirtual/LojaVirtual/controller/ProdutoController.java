@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,30 +25,30 @@ import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api/produto")
+@RequestMapping("/produtos")
 @CrossOrigin
 public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
 
-    @GetMapping("/")
-    public List<Produto> buscarTodos() {
-        return produtoService.buscarTodos();
+    @GetMapping
+    public Page<Produto> listarTodos(Pageable pageable) {
+        return produtoService.listarTodos(pageable);
     }
 
-    @PostMapping("/")
-    public Produto inserir(@Valid@RequestBody Produto objeto) {
-        return produtoService.inserir(objeto);
+    @PostMapping
+    public Produto salvar(@Valid@RequestBody Produto objeto) {
+        return produtoService.salvar(objeto);
     }
 
-    @PutMapping("/")
-    public Produto alterar(@RequestBody Produto objeto) {
-        return produtoService.alterar(objeto);
+    @PutMapping
+    public Produto atualizar(@RequestBody Produto objeto) {
+        return produtoService.atualizar(objeto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirProduto(@PathVariable Long id) {
+    public ResponseEntity<Object> excluir (@PathVariable Long id) {
         try {
             produtoService.excluir(id);
             return ResponseEntity.ok("Produto excluído com sucesso");

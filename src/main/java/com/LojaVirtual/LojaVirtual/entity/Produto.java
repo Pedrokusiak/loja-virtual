@@ -25,18 +25,18 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "A descrição curta não pode ser nulo")
-    @NotBlank(message = "A descrição curta não pode ser vazia")
-    private String descricaoCurta;
+    // @NotNull(message = "A descrição curta não pode ser nulo")
+    // @NotBlank(message = "A descrição curta não pode ser vazia")
+    // private String descricaoCurta;
 
     @NotNull(message = "A descrição detalhada não pode ser nulo")
     @NotBlank(message = "A descrição detalhada não pode ser vazia")
-    private String descricaoDetalhada;
+    private String descricao;
 
     @Positive(message = "O valor de custe deve ser um valor positivo")
-    private Double valorCusto;
+    private Double valor;
     @Positive(message = "O valor de venda dever ser um valor positivo")
-    private Double valorVenda;
+    private Double valorPromocional;
 
 
     @Temporal(TemporalType.TIMESTAMP)

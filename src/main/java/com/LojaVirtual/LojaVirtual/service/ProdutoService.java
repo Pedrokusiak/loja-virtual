@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.LojaVirtual.LojaVirtual.entity.Produto;
@@ -18,29 +20,25 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public List<Produto> buscarTodos() {
-        return produtoRepository.findAll();
+    public Page<Produto> listarTodos(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
     }
 
     public Produto buscarPorId(Long id) {
         return produtoRepository.findById(id).get();
     }
 
-    public Produto inserir(Produto objeto) {
-        objeto.setDataCriacao(new Date());
-        Produto objetoNovo = produtoRepository.saveAndFlush(objeto);
-        return objetoNovo;
+    public Produto salvar(Produto produto) {
+        // produto.setDataCriacao(new Date());
+        return produtoRepository.saveAndFlush(produto);
     }
 
-    public Produto alterar(Produto objeto) {
-        objeto.setDataAtualizacao(new Date());
-        return produtoRepository.saveAndFlush(objeto);
+    public Produto atualizar(Produto produto) {
+        // produto.setDataAtualizacao(new Date());
+        return produtoRepository.saveAndFlush(produto);
     }
 
-    public void excluir(Long id) {
-        Produto produto = produtoRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado."));
-        produtoRepository.delete(produto);
-
+    public void excluir(Long id){
+        produtoRepository.deleteById(id);
     }
 }

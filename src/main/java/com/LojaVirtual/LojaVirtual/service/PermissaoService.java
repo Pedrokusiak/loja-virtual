@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.LojaVirtual.LojaVirtual.entity.Permissao;
@@ -16,8 +18,8 @@ public class PermissaoService {
     @Autowired
     private PermissaoRepository permissaoRepository;
 
-    public List<Permissao> buscarTodos() {
-        return permissaoRepository.findAll();
+    public Page<Permissao> buscarTodos(Pageable pageable) {
+        return permissaoRepository.findAll(pageable);
     }
 
     public Permissao buscarPorId(Long id) {
